@@ -2,7 +2,6 @@
 
 from time import strptime, mktime
 from math import inf
-import datetime
 
 records = list()
 
