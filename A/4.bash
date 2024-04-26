@@ -23,7 +23,19 @@ for file in ${files_source}; do
   # echo ${service}/${version}/${number_build}/${system_operating}_${architecture}/${product}.${type_archieve}
 
   directory="${directory_destination}/${service}/${version}/${number_build}/${system_operating}_${architecture}"
-
   mkdir -p ${directory}
-  cp ${file} ${directory}/${product}.${type_archieve}
+
+  if [ ${type_archieve} = '7z' ]; then
+    directory_destination_extract='/tmp/4-exam-build'
+    directory_script=$(pwd)
+
+    7z -y e ${file} -o${directory_destination_extract}
+    cd ${directory_destination_extract}
+    zip -r ${directory}/${product}.zip .
+    cd ${directory_script}
+    rm -r ${directory_destination_extract}
+  else
+    cp ${file} ${directory}/${product}.${type_archieve}
+  fi
+
 done
