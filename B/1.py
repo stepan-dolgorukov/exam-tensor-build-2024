@@ -12,6 +12,8 @@ statistics_time_processing = {
   "median": 0
 }
 
+number_requests_resource = dict()
+
 with open("input.txt") as input:
   line = str()
 
@@ -46,6 +48,14 @@ for record in records:
   if (record["resp_code"] > 400) or ("error" in record["resp_body"]):
     counter_responses_error += 1
 
+  resource = record["req_path"]
+
+  if resource in number_requests_resource:
+    number_requests_resource[resource] += 1
+
+  else:
+    number_requests_resource[resource] = 1
+
 statistics_time_processing["average"] = sum_time_processing / len(records)
 half = len(list_time_processing) // 2
 
@@ -59,3 +69,4 @@ else:
 
 print(statistics_time_processing)
 print(counter_responses_error / len(records) * 100)
+print(number_requests_resource)
