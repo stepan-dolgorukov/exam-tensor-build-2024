@@ -2,6 +2,7 @@
 
 from time import strptime, mktime
 from math import inf
+import sys
 
 records = list()
 
@@ -14,7 +15,7 @@ statistics_time_processing = {
 
 number_requests_resource = dict()
 
-with open("input.txt") as input:
+with open(sys.argv[1]) as input:
   line = str()
 
   while line := input.readline():
