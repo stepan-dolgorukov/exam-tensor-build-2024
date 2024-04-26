@@ -29,6 +29,7 @@ with open("input.txt") as input:
 
 sum_time_processing = 0
 list_time_processing = list()
+counter_responses_error = 0
 
 for record in records:
   time_processing = mktime(record["end_time"]) - mktime(record["start_time"])
@@ -42,6 +43,9 @@ for record in records:
 
   list_time_processing.append(time_processing)
 
+  if (record["resp_code"] > 400) or ("error" in record["resp_body"]):
+    counter_responses_error += 1
+
 statistics_time_processing["average"] = sum_time_processing / len(records)
 half = len(list_time_processing) // 2
 
@@ -54,3 +58,4 @@ else:
   statistics_time_processing["median"] = list_time_processing[half]
 
 print(statistics_time_processing)
+print(counter_responses_error / len(records) * 100)
