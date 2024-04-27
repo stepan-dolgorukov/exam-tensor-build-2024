@@ -36,3 +36,11 @@ chmod u+x 2.bash
 ```
 
 и вводим хосты построчно.
+
+## 3.A
+
+```shell
+cd A
+chmod u+x 3.bash
+./3.bash "каталог"
+```
