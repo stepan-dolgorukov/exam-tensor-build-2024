@@ -68,6 +68,10 @@ if len(list_time_processing) % 2 == 0:
 else:
   statistics_time_processing["median"] = list_time_processing[half]
 
-print(statistics_time_processing)
-print(counter_responses_error / len(records) * 100)
-print(number_requests_resource)
+for characteristic in statistics_time_processing:
+  print(characteristic, statistics_time_processing[characteristic])
+
+print(f'Процент ошибочных запросов: {counter_responses_error / len(records) * 100}')
+
+for resource in number_requests_resource:
+  print(resource, number_requests_resource[resource])
